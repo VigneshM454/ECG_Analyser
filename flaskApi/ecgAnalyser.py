@@ -16,9 +16,19 @@ import base64
 
 from preProcess2 import ECGPreprocessor
 
-MODEL_DIR = './models/'
-TEMP_DIR = '../temp/'
-DATA_PATH = '../datasets/mit-bih'  # Path to MIT-BIH dataset
+
+# Get the absolute path to the flaskApi directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) if "flaskApi" not in os.path.abspath(__file__) else os.path.dirname(os.path.abspath(__file__))
+
+# Define paths relative to BASE_DIR
+MODEL_DIR = os.path.join(BASE_DIR, 'models')
+TEMP_DIR = os.path.join(BASE_DIR, 'temp')
+DATA_PATH = os.path.join(BASE_DIR, 'datasets', 'mit-bih')  # If using datasets
+
+
+# MODEL_DIR = './models/'
+# TEMP_DIR = '../temp/'
+# DATA_PATH = '../datasets/mit-bih'  # Path to MIT-BIH dataset
 
 arrhythmia_mapping = {
         'L': 'Left Bundle Branch Block',
