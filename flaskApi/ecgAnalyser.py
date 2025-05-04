@@ -868,7 +868,7 @@ def analyze_ecg_with_xai(record_number, model_dir=None, data_path=None, lead_ind
     # }
 
 
-def analyze_ecg(record_path=None, record_number=None, model_dir="../models/", 
+def analyze_ecg(record_path=None, record_number=None, model_dir="./models/", 
                 data_path=None, lead_index=0, sample_idx=None, with_xai=False):
     """
     Analyze an ECG record with or without XAI
