@@ -18,13 +18,12 @@ from preProcess2 import ECGPreprocessor
 
 
 # Get the absolute path to the flaskApi directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) if "flaskApi" not in os.path.abspath(__file__) else os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Define paths relative to BASE_DIR
-MODEL_DIR = os.path.join(BASE_DIR, 'models')
+# Define paths relative to BASE_DIR (the directory containing your script)
+MODEL_DIR = os.path.join(BASE_DIR, 'models')  # This points to flaskApi/models
 TEMP_DIR = os.path.join(BASE_DIR, 'temp')
-DATA_PATH = os.path.join(BASE_DIR, 'datasets', 'mit-bih')  # If using datasets
-
+DATA_PATH = os.path.join(BASE_DIR, 'datasets', 'mit-bih')
 
 # MODEL_DIR = './models/'
 # TEMP_DIR = '../temp/'
@@ -48,7 +47,10 @@ arrhythmia_mapping = {
 def load_model_and_artifacts():
     """Load the trained model and associated artifacts."""
     print("Loading model and artifacts...")
-    
+    # Debug information
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"BASE_DIR: {BASE_DIR}")
+    print(f"MODEL_DIR: {MODEL_DIR}")
     # Load model
     model_path = os.path.join(MODEL_DIR, 'bayesian_ecg_model.keras')
     model = keras.models.load_model(model_path)
