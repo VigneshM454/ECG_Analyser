@@ -1,0 +1,216 @@
+{
+  "entropy": [
+    0.0018436729442328215
+  ],
+  "feature_importance": {
+    "entropy": 0.29364431486880466,
+    "frequency_ratio": 0.3266472303206997,
+    "heartrate": 0.6574927113702624,
+    "p_amplitude": 0.5273469387755102,
+    "p_area": 0.14052478134110788,
+    "p_duration": 0.12104956268221576,
+    "pr_interval": 0.18192419825072886,
+    "qrs_area": 0.026122448979591838,
+    "qrs_duration": 0.4227405247813411,
+    "qt_interval": 0.13994169096209913,
+    "r_amplitude": 1,
+    "r_symmetry": 0.2558600583090379,
+    "rr_next": 0.05166180758017493,
+    "rr_prev": 0.14227405247813413,
+    "rr_ratio": 0.17387755102040817,
+    "spectral_energy": 0.5296793002915452,
+    "spectral_entropy": 0.7996501457725947,
+    "st_segment": 0.4536443148688047,
+    "t_amplitude": 0.7130029154518951,
+    "t_area": 0.678134110787172,
+    "t_symmetry": 0.19778425655976678,
+    "wavelet_coef1": 0.39790087463556856,
+    "wavelet_coef2": 0.1834402332361516,
+    "wavelet_coef3": 0.19032069970845483,
+    "wavelet_coef4": 0.5759766763848397,
+    "wavelet_coef5": 0.10542274052478134
+  },
+  "images": {
+    "feature_importance_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638806/ecg_images/ymlz13jzluuhqwu7jii4.png",
+    "lime_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638806/ecg_images/nptoq5ym6cq1mz1fozwq.png",
+    "probability_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638804/ecg_images/soius4ntzxvjcdhzdzcj.png",
+    "rhythm_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638807/ecg_images/mqoyhye5r3ati0lhawca.png",
+    "risk_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638805/ecg_images/gy7fwlwjwz5xncfom9tx.png",
+    "segment_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638804/ecg_images/tajq57nyjrbsalxl4k3l.png",
+    "uncertainty_plot": "https://res.cloudinary.com/dqvutogzy/image/upload/v1746638805/ecg_images/jo2jqubb5l1hy2skutwl.png"
+  },
+  "label_classes": [
+    "L",
+    "N",
+    "R"
+  ],
+  "lime_explanation": [
+    [
+      "p_amplitude",
+      -0.0000745171372527343
+    ],
+    [
+      "r_amplitude",
+      0.0000667140683252526
+    ],
+    [
+      "wavelet_coef4",
+      0.00006383085032853689
+    ],
+    [
+      "st_segment",
+      0.000050361856406517955
+    ],
+    [
+      "rr_ratio",
+      0.00003131131620828846
+    ],
+    [
+      "rr_next",
+      -0.000030362654147022355
+    ],
+    [
+      "pr_interval",
+      0.000027133418168729193
+    ],
+    [
+      "qrs_duration",
+      -0.000021888474167150393
+    ],
+    [
+      "wavelet_coef3",
+      0.000018495926628212758
+    ],
+    [
+      "p_area",
+      0.00001799341101757759
+    ]
+  ],
+  "predicted_classes": [
+    "N"
+  ],
+  "probabilities": [
+    [
+      0.00009257320925826207,
+      0.9998212456703186,
+      0.0000860119762364775
+    ]
+  ],
+  "processed_data": {
+    "detected_labels": [
+      "E",
+      "F",
+      "a",
+      "V",
+      "N"
+    ],
+    "num_segments": 2682
+  },
+  "segment_analysis": {
+    "irregularities": [],
+    "rhythm_assessment": "Regular sinus rhythm detected",
+    "segment_max": 1.064105840187549,
+    "segment_mean": 0.00309127200058146,
+    "segment_min": -0.3459096775470665,
+    "segment_range": 1.4100155177346154
+  },
+  "std_probs": [
+    [
+      2.1827872842550278e-11,
+      2.384185791015625e-7,
+      1.4551915228366852e-11
+    ]
+  ],
+  "structured_results": {
+    "detailed_probabilities": [
+      {
+        "class": "L",
+        "description": "Left Bundle Branch Block",
+        "probability": 0.00009257320925826207,
+        "std_deviation": 2.1827872842550278e-11
+      },
+      {
+        "class": "N",
+        "description": "Normal Beat",
+        "probability": 0.9998212456703186,
+        "std_deviation": 2.384185791015625e-7
+      },
+      {
+        "class": "R",
+        "description": "Right Bundle Branch Block",
+        "probability": 0.0000860119762364775,
+        "std_deviation": 1.4551915228366852e-11
+      }
+    ],
+    "feature_importance": [
+      {
+        "feature": "r_amplitude",
+        "importance": 1
+      },
+      {
+        "feature": "spectral_entropy",
+        "importance": 0.7996501457725947
+      },
+      {
+        "feature": "t_amplitude",
+        "importance": 0.7130029154518951
+      },
+      {
+        "feature": "t_area",
+        "importance": 0.678134110787172
+      },
+      {
+        "feature": "heartrate",
+        "importance": 0.6574927113702624
+      }
+    ],
+    "lime_explanation": [
+      {
+        "feature": "p_amplitude",
+        "impact": "contradicting",
+        "value": -0.0000745171372527343
+      },
+      {
+        "feature": "r_amplitude",
+        "impact": "supporting",
+        "value": 0.0000667140683252526
+      },
+      {
+        "feature": "wavelet_coef4",
+        "impact": "supporting",
+        "value": 0.00006383085032853689
+      },
+      {
+        "feature": "st_segment",
+        "impact": "supporting",
+        "value": 0.000050361856406517955
+      },
+      {
+        "feature": "rr_ratio",
+        "impact": "supporting",
+        "value": 0.00003131131620828846
+      }
+    ],
+    "risk_assessment": {
+      "recommendation": "No immediate action required. Continue regular check-ups.",
+      "risk_level": "Normal Heart Rhythm"
+    },
+    "segment_analysis": {
+      "irregularities": [],
+      "rhythm_assessment": "Regular sinus rhythm detected",
+      "segment_max": 1.064105840187549,
+      "segment_mean": 0.00309127200058146,
+      "segment_min": -0.3459096775470665,
+      "segment_range": 1.4100155177346154
+    },
+    "summary": {
+      "condition": "Normal Beat",
+      "confidence": 0.9981563270557672,
+      "predicted_class": "N"
+    },
+    "uncertainty_analysis": {
+      "certainty_level": "High",
+      "entropy": 0.0018436729442328215
+    }
+  }
+}
