@@ -27,8 +27,10 @@ function validateToken(req, res, next) {
       const newAccessToken = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN, { expiresIn: "3m" });
       res.cookie("accessToken", newAccessToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: "strict",
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        // secure: process.env.NODE_ENV === 'production',
+        // sameSite: "strict",
         maxAge: 5 * 60 * 1000, 
         path: '/', 
       });
@@ -50,8 +52,10 @@ function generateToken(res,email){
     const refreshToken=jwt.sign({email:email},process.env.REFRESH_TOKEN, {expiresIn:'15m'});
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: "strict",
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      // secure: process.env.NODE_ENV === 'production',
+      // sameSite: "strict",
       maxAge: 5 * 60 * 1000, 
       path: '/', 
     });

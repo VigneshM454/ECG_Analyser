@@ -26,7 +26,10 @@ function renewToken(req,res,next){
                 exist=true;     
                 response={msg:'success'}               
                 res.cookie('accessToken',accessToken,{
-                    maxAge:'60000',httpOnly:'true',secure:true,sameSite:'strict'
+                    maxAge:'60000',httpOnly:'true',
+                    secure: process.env.NODE_ENV === 'production', 
+                    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+                    // secure:true,sameSite:'strict'
                 });
             }
         })

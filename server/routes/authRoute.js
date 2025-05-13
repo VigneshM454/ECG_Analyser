@@ -55,15 +55,19 @@ authRoute.post('/logout',async(req,res,next)=>{
     console.log('inside logout');
     res.clearCookie("accessToken", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: "strict",
-        path: '/', 
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        // secure: process.env.NODE_ENV === 'production',
+        // sameSite: "strict",
+         path: '/', 
     });
     
     res.clearCookie("refreshToken", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: "strict",
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        // secure: process.env.NODE_ENV === 'production',
+        // sameSite: "strict",
         path: '/', 
     });
     
