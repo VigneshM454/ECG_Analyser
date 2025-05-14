@@ -1,5 +1,20 @@
 const jwt = require("jsonwebtoken");
 
+function getCookieOptions(req){
+  const isProduction = process.env.NODE_ENV === 'production';
+  
+  // Get the origin from the request headers to adapt to different frontends
+  const origin = req.headers.origin;
+  const isNetlify = origin && origin.includes('netlify');
+  const cookieOptions = {
+    httpOnly: true,
+    secure: isProduction || isNetlify, // Must be true for cross-domain cookies
+    sameSite: isNetlify ? 'none' : 'lax', // Must be 'none' for cross-domain cookies
+    path: '/',
+  };
+  return cookieOptions;
+}
+
 function validateToken(req, res, next) {
   console.log('entered validateToken');
   console.log(req.cookies);
@@ -26,13 +41,8 @@ function validateToken(req, res, next) {
       // Issue a new access token
       const newAccessToken = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN, { expiresIn: "3m" });
       res.cookie("accessToken", newAccessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-        // secure: process.env.NODE_ENV === 'production',
-        // sameSite: "strict",
-        maxAge: 5 * 60 * 1000, 
-        path: '/', 
+        ...getCookieOptions(req),
+        maxAge: 5 * 60 * 1000
       });
       // res.cookie("accessToken", newAccessToken, {
       //   httpOnly: true,
@@ -47,25 +57,17 @@ function validateToken(req, res, next) {
   });
 }
 
-function generateToken(res,email){
+function generateToken(req,res,email){
   const accessToken=jwt.sign({email:email},process.env.ACCESS_TOKEN, {expiresIn:'3m'});
     const refreshToken=jwt.sign({email:email},process.env.REFRESH_TOKEN, {expiresIn:'15m'});
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', 
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-      // secure: process.env.NODE_ENV === 'production',
-      // sameSite: "strict",
+      ...getCookieOptions(req),
       maxAge: 5 * 60 * 1000, 
-      path: '/', 
     });
     
     res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      ...getCookieOptions(req),
       maxAge: 24 * 60 * 60 * 1000, // 1 day in ms
-      path: '/',
     });
     
     console.log('cookies is ');
@@ -74,4 +76,4 @@ function generateToken(res,email){
 
 }
 
-module.exports = {validateToken,generateToken};
+module.exports = {validateToken,generateToken,getCookieOptions};

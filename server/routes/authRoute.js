@@ -4,7 +4,7 @@ const axios=require('axios')
 const jwt=require('jsonwebtoken');
 const userModel=require('../models/userModel')
 const {comparePassword,hashPassword} =require('../securePassword')
-const {validateToken,generateToken} = require('../middleware/handleTokens')
+const {validateToken,generateToken, getCookieOptions} = require('../middleware/handleTokens')
 
 const authRoute=express.Router();
 
@@ -22,7 +22,7 @@ authRoute.post('/createAccount',async(req,res,next)=>{
     const newUser=await userModel.create({name,email,phone,password})
     console.log(newUser)
     
-    await generateToken(res,email)
+    await generateToken(req,res,email)
     return res.send({status:200,msg:'Account created successfully',name:newUser.name,email:newUser.email,phone:newUser.phone})
  
 })
@@ -46,7 +46,7 @@ authRoute.post('/login',async(req,res,next)=>{
     if(! isValidPass) return res.status(400).send({msg:'Invalid credentials'})
     console.log(user);
 
-    await generateToken(res,email)
+    await generateToken(req,res,email)
 
     res.status(200).send({msg:'Login succcess', name:user.name,email:user.email,phone:user.phone})
 })
@@ -54,21 +54,11 @@ authRoute.post('/login',async(req,res,next)=>{
 authRoute.post('/logout',async(req,res,next)=>{
     console.log('inside logout');
     res.clearCookie("accessToken", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-        // secure: process.env.NODE_ENV === 'production',
-        // sameSite: "strict",
-         path: '/', 
+        ...getCookieOptions(req)
     });
     
     res.clearCookie("refreshToken", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-        // secure: process.env.NODE_ENV === 'production',
-        // sameSite: "strict",
-        path: '/', 
+        ...getCookieOptions(req)
     });
     
     return res.status(200).json({ msg: "Logged out successfully" });
