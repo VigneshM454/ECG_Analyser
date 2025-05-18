@@ -1,0 +1,42 @@
+<div>
+   <form {{on 'submit' this.uploadFile}} action="">
+    <h2>Patient Ecg Entry</h2>
+
+    <br>
+
+    {{#if this.isNewPatient}}
+      <label for="pname">Name</label>
+      <input  type="text" id="pname" value={{this.patient.name}}
+        {{on "input" this.updateName}}
+      />
+      <br>
+      <label for="age">Age</label>
+      <input type="number" id="age"    value={{this.patient.age}}
+        {{on "input" this.updateAge}}
+      />
+      <br>
+      <label>Gender</label>
+      <input type="radio" name="gender" checked={{eq this.patient.gender "Male"}}
+        {{on "change" (fn this.updateGender "Male")}}
+      /> Male
+
+      <input
+        type="radio" name="gender" checked={{eq this.patient.gender "Female"}}
+        {{on "change" (fn this.updateGender "Female")}}
+      /> Female
+
+      {{/if}}
+
+
+    <h4>Upload patients ecg files (as zip file)</h4> <br>
+    <label for="">ECG record</label>
+    <input type="file" name="" id="" multiple {{on 'input' this.fileSelected}}> <br>
+    <button type="submit">Upload Patient Details</button>
+  </form>
+</div>
+{{!-- <button {{on 'click' this.getAll}}>Get all patients</button>
+<button {{on 'click' this.getSpecific}}>Get specific patient</button> --}}
+{{!--
+
+
+ --}}

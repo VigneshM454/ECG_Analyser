@@ -1,0 +1,84 @@
+
+<div class="body" >
+  <h1>Ecg Analyser</h1>
+
+  <div class="container">
+    <div class="tabs">
+      <div class="tab {{if this.isNewUser '' 'active'}}" id="login-tab" {{on 'click'  (fn (mut this.isNewUser) false)}} >Login</div>
+      <div class="tab {{if this.isNewUser 'active' ''}}" id="signup-tab" {{on 'click'  (fn (mut this.isNewUser) true)}}  >Sign Up</div>
+    </div>
+
+    <div class="form-container">
+
+    <form {{on 'submit' this.submitForm}}   class="form active" id="signup-form" >
+      {{#if this.isNewUser}}
+        <div class="form-group">
+          <label for="signup-name"> Name</label>
+          <input type="text" id="signup-name" {{on 'input' this.updateName}} required>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-phone">Phone</label>
+          <input type="tel" name=""  id="signup-phone" {{on 'input' this.updatePhone}}  required>
+        </div>
+      {{/if}}
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" {{on 'input' this.updateEmail}} required>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" {{on 'input' this.updatePass}} required>
+        </div>
+
+        {{#if this.isNewUser}}
+          <div class="form-group">
+            <label for="signup-confirm-password">Confirm Password</label>
+            <input type="password" id="signup-confirm-password" {{on 'input' this.updateConfirmPass}} required>
+          </div>
+        {{/if}}
+
+        <button class="loginBtn" type="submit">{{if this.isNewUser 'Sign Up' 'Login'}}</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{!--
+<form class="form loginForm" action="">
+  <h3>SignUp form</h3>
+  {{#if this.isNewUser}}
+    <label for="name">Name</label>
+    <input type="text" name="" id="name" />
+  {{/if}}
+  <label for="email">Email</label>
+  <input type="email" name="" id="email" />
+  <label for="pass">Password</label>
+  <input type="password" name="" id="pass" />
+  {{#if this.isNewUser}}
+  <label for="cpass">Confirm Password</label>
+  <input type="password" name="" id="cpass" />
+  {{/if}}
+
+  <button type="submit">{{if this.isNewUser 'Create Account' 'Login'}}</button>
+
+</form> --}}
+
+{{!-- Login Form --}}
+      {{!-- <form class="form active" id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required>
+        </div>
+
+        <button class="loginBtn" type="submit">Login</button>
+      </form> --}}
+
+      {{!-- Sign Up Form --}}

@@ -1,0 +1,129 @@
+
+  <div class="container tableContainer">
+    <h1>ECG Analyzer - Patient Records</h1>
+    <button type="button" {{on 'click' this.ecgData.logout}} >Logout</button>
+    <LinkTo @route="upload">Add New Patient</LinkTo>
+    {{!-- Controls Section with Search and Sort Options --}}
+
+    {{#if this.ecgData.patientList}}
+      <div class="controls">
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="Search patients...">
+            </div>
+
+            <div class="sort-options">
+              <label for="sortBy">Sort By:</label>
+              <select id="sortBy">
+                <option value="recordNo">Record No</option>
+                <option value="name">Patient Name</option>
+                <option value="date">Date</option>
+                <option value="age">Age</option>
+              </select>
+
+              <select id="sortOrder">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
+            </div>
+      </div>
+
+      {{!-- Table Component --}}
+      <table id="ecgTable">
+        <thead>
+          <tr>
+            <th>Record No</th>
+            <th>Patient Name</th>
+            <th>Date</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.ecgData.patientList as |patient indx|}}
+            <tr>
+              <td>ECG-0{{indx}}</td>
+              <td>{{patient.name}}</td>
+              <td>2025-04-22</td>
+              <td>{{patient.age}}</td>
+              <td>{{patient.gender}}</td>
+              <td class="options">
+                <LinkTo @route="patient" @model="{{patient._id}}">View</LinkTo>
+                {{!-- <button class="btn btn-view"  type="button">View</button> --}}
+                <button class="btn btn-delete"  type="button" {{on 'click' (fn this.ecgData.deletePatient patient._id )}}>Delete</button>
+                <button class="btn btn-edit"  type="button">
+                  <LinkTo @route="upload-existing" @model="{{patient._id}}">Add New Record</LinkTo>
+                </button>
+
+              </td>
+            </tr>
+
+          {{/each}}
+          {{!-- Sample data rows --}}
+
+        </tbody>
+      </table>
+
+    {{else}}
+    <h1>No patient found </h1>
+    {{/if}}
+
+    {{!-- Pagination --}}
+    {{!-- <div class="pagination">
+      <button class="page-btn" type="button">Previous</button>
+      <button class="page-btn active" type="button">1</button>
+      <button class="page-btn" type="button">2</button>
+      <button class="page-btn" type="button">3</button>
+      <button class="page-btn" type="button">Next</button>
+    </div> --}}
+  </div>
+{{!--
+
+<tr>
+          <td>ECG-002</td>
+          <td>Sarah Johnson</td>
+          <td>2025-04-21</td>
+          <td>38</td>
+          <td>Female</td>
+          <td class="options">
+            <button class="btn btn-view" onclick="viewRecord('ECG-002')" type="button">View</button>
+            <button class="btn btn-delete" onclick="deleteRecord('ECG-002')" type="button">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>ECG-003</td>
+          <td>Robert Brown</td>
+          <td>2025-04-20</td>
+          <td>62</td>
+          <td>Male</td>
+          <td class="options">
+            <button class="btn btn-view" onclick="viewRecord('ECG-003')" type="button">View</button>
+            <button class="btn btn-edit" onclick="editRecord('ECG-003')" type="button">Edit</button>
+            <button class="btn btn-delete" onclick="deleteRecord('ECG-003')" type="button">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>ECG-004</td>
+          <td>Emily Davis</td>
+          <td>2025-04-19</td>
+          <td>29</td>
+          <td>Female</td>
+          <td class="options">
+            <button class="btn btn-view" onclick="viewRecord('ECG-004')" type="button">View</button>
+            <button class="btn btn-edit" onclick="editRecord('ECG-004')" type="button">Edit</button>
+            <button class="btn btn-delete" onclick="deleteRecord('ECG-004')" type="button">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>ECG-005</td>
+          <td>Michael Wilson</td>
+          <td>2025-04-18</td>
+          <td>55</td>
+          <td>Male</td>
+          <td class="options">
+            <button class="btn btn-view" onclick="viewRecord('ECG-005')" type="button">View</button>
+            <button class="btn btn-edit" onclick="editRecord('ECG-005')" type="button">Edit</button>
+            <button class="btn btn-delete" onclick="deleteRecord('ECG-005')" type="button">Delete</button>
+          </td>
+        </tr>
+ --}}

@@ -1,0 +1,42 @@
+{{yield}}
+<h1>List of Ecg Record of patient </h1>
+{{@data.patient.name}}
+{{#if this.ecgData.isrecordFetched}}
+  {{#if @data.patient}}
+    <div>
+      Name : {{@data.patient.name}}
+      Age  : {{@data.patient.age}}
+      Gender :  {{@data.patient.gender}}
+
+      <LinkTo @route="upload-existing" @model="{{@data.patient._id}}">Add New Record</LinkTo>
+    </div>
+    <table>
+      <thead>
+        <th> SLNO</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Options</th>
+      </thead>
+      <tbody>
+        {{#each @data.records as |record index|}}
+        <tr>
+          <td>{{index}}</td>
+          {{#each-in record as |key val|}}
+            {{#if (not-eq key '_id')}}
+            <td>{{val}}</td>
+            {{/if}}
+          {{/each-in}}
+          <td>
+            <button type="button" {{on 'click' (fn this.ecgData.deleteRecord record._id)}} >Delete</button>
+            <LinkTo @route="record" @model={{record._id}} >View</LinkTo>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+  <h3>No record found</h3>
+  {{/if}}
+{{else}}
+  <p>Fetching records</p>
+{{/if}}

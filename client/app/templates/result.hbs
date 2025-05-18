@@ -1,0 +1,226 @@
+{{page-title "Result"}}
+
+  <div class="resultContainer">
+    <div class="header">
+      <h1>ECG Analysis Report</h1>
+      <div class="record-info">Record #121 | Patient ID: PT-5492</div>
+    </div>
+
+    <div class="main-content">
+      <div class="summary-panel">
+        <div class="diagnosis-panel">
+          <div class="diagnosis-header">Left Bundle Branch Block (LBBB)</div>
+          <div class="diagnosis-detail">
+            Abnormal heart rhythm detected with wide QRS complex.
+            The electrical impulse is delayed along the left branch of the bundle of His.
+          </div>
+          <div class="confidence">Prediction confidence: 84.75%</div>
+          <div class="recommendation">
+            Immediate medical attention recommended.
+          </div>
+        </div>
+
+        <div class="risk-panel high-risk">
+          <h3>Risk Assessment</h3>
+          <div class="risk-meter">
+            <div class="risk-level risk-high"></div>
+          </div>
+          <div class="risk-percentage">HIGH RISK (88.03%)</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">ECG Segment Analysis</h2>
+        <div class="graph-container">
+          <div class="graph-title">ECG Segment Analysis with Detected Abnormalities</div>
+          <img src="/api/placeholder/1000/350" alt="ECG Segment Analysis" class="graph-content">
+          <div style="margin-top: 10px;">
+            <span class="anomaly-tag">Left bundle branch block detected</span>
+            <span class="anomaly-tag">Wide QRS complex</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="section">
+            <h2 class="section-title">Class Probabilities</h2>
+            <div class="graph-container">
+              <div class="graph-title">Class Probabilities with Uncertainty</div>
+              <img src="/api/placeholder/500/300" alt="Class Probabilities" class="graph-content">
+            </div>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Classification</th>
+                  <th>Probability</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>L - Left Bundle Branch Block</td>
+                  <td>84.75% (±0.00%)</td>
+                </tr>
+                <tr>
+                  <td>N - Normal Beat</td>
+                  <td>13.97% (±0.00%)</td>
+                </tr>
+                <tr>
+                  <td>R - Right Bundle Branch Block</td>
+                  <td>1.28% (±0.00%)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="section">
+            <h2 class="section-title">Uncertainty Analysis</h2>
+            <div class="graph-container">
+              <div class="graph-title">Prediction Uncertainty (Entropy)</div>
+              <img src="/api/placeholder/500/300" alt="Prediction Uncertainty" class="graph-content">
+            </div>
+
+            <div class="feature-row">
+              <span class="feature-name">Entropy:</span>
+              <span class="feature-value">0.4709</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-name">Prediction Certainty:</span>
+              <span class="feature-value">Medium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="section">
+            <h2 class="section-title">Top Important Features</h2>
+            <div class="graph-container">
+              <div class="graph-title">Top 10 Most Important Features</div>
+              <img src="/api/placeholder/500/350" alt="Feature Importance" class="graph-content">
+            </div>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Importance Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>t_area</td>
+                  <td>0.8996</td>
+                </tr>
+                <tr>
+                  <td>spectral_entropy</td>
+                  <td>0.8517</td>
+                </tr>
+                <tr>
+                  <td>wavelet_coef4</td>
+                  <td>0.7118</td>
+                </tr>
+                <tr>
+                  <td>heartrate</td>
+                  <td>0.5413</td>
+                </tr>
+                <tr>
+                  <td>qrs_duration</td>
+                  <td>0.4828</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="section">
+            <h2 class="section-title">LIME Explanations</h2>
+            <div class="graph-container">
+              <div class="graph-title">LIME Explanation for L Class</div>
+              <img src="/api/placeholder/500/350" alt="LIME Explanation" class="graph-content">
+            </div>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Contribution</th>
+                  <th>Effect</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>wavelet_coef4</td>
+                  <td>-0.0890</td>
+                  <td class="feature-negative">Contradicting</td>
+                </tr>
+                <tr>
+                  <td>spectral_entropy</td>
+                  <td>0.0744</td>
+                  <td class="feature-positive">Supporting</td>
+                </tr>
+                <tr>
+                  <td>frequency_ratio</td>
+                  <td>0.0536</td>
+                  <td class="feature-positive">Supporting</td>
+                </tr>
+                <tr>
+                  <td>qrs_duration</td>
+                  <td>0.0531</td>
+                  <td class="feature-positive">Supporting</td>
+                </tr>
+                <tr>
+                  <td>heartrate</td>
+                  <td>-0.0527</td>
+                  <td class="feature-negative">Contradicting</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Technical Details</h2>
+        <div class="row">
+          <div class="col">
+            <div class="feature-row">
+              <span class="feature-name">Record Number:</span>
+              <span class="feature-value">121</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-name">Sampling Frequency:</span>
+              <span class="feature-value">360 Hz</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-name">Signal Shape:</span>
+              <span class="feature-value">(650000, 2)</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="feature-row">
+              <span class="feature-name">Detected Beats:</span>
+              <span class="feature-value">1874</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-name">Beat Classes Found:</span>
+              <span class="feature-value">A, N, V</span>
+            </div>
+            <div class="feature-row">
+              <span class="feature-name">Beat Distribution:</span>
+              <span class="feature-value">N: 1872, A: 1, V: 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="print-button" onclick="window.print();" type="button">Print Report</button>
+    </div>
+  </div>
+
+{{outlet}}
